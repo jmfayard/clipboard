@@ -13,8 +13,6 @@ v1.0, 2018-35-14
 :snippets: snippets
 
 
-
-
 == Getting Started [Instruction]
 
 === Download and explore starter project
@@ -124,16 +122,15 @@ include::{snippets}/activity-button.xml[]
 
 Run the app again and see what changed.
 
-**TODO**: screenshot
+That's right, the background color is now the same as the app bar. 
 
-**TODO**: explications
-
+The text is now in white so that the contrast between the two stay readable.
 
 === Give me space!
 
-Next we want to add space everywhere.
-
 We can barely breath in this interface!
+
+Next we want to add space everywhere.
 
 [cols=2*,options=header]
 |===
@@ -147,7 +144,12 @@ a|image::app4.png[After]
 |===
 
 
-Open the resource file `activity_main.xml` and replace its content with this:
+
+Open the resource file `activity_main.xml` 
+
+We use the attributes `layout_margin{Start,End,Top,Bottom}` and `padding{Start,End,Top,Bottom}` to get the space right. 
+
+Replace the file content with this one:
 
 [source,xml,indent=0]
 ----
@@ -156,8 +158,7 @@ include::{snippets}/activity-space.xml[]
 
 Run the app again and see what changed.
 
-**TODO**: explications
-
+image::https://koenig-media.raywenderlich.com/uploads/2018/10/brilliant.jpg[brillant,300,300,align=center]
 
 
 === Oops, it's buggy! [Theory]
