@@ -15,7 +15,7 @@ v1.0, 2018-35-14
 
 == Getting Started
 
-=== Download and explore starter project
+=== Download and explore the starter project
 
 https://drive.google.com/drive/folders/1aE9V8GNKZiDUV4uA-x3Eoi2-eBGhLljc?usp=sharing[**Download the material from Google Drive**^].
 
@@ -23,11 +23,11 @@ Unzip the file `Jmfayard-Android-PreTryout-SP.zip`.
 
 === Up and running
 
-Open the project with Android Studio, give him some to finish the sync.
+Open the project with Android Studio, give it some to finish the sync.
 
 Connect your smartphone via USB.
 
-Select the menu entry `Run > Run` and choose the Run configuration `app`
+Select the menu entry `Run > Run` and choose the Run configuration `app`.
 
 The app should open on your smartphone.
 
@@ -43,7 +43,7 @@ _But_, it looks a bit ugly, doesn't it?
 
 == How to make you look good
 
-Let see how we can make the app looks better, so that you looks good in that dinner with friends.
+Let see how we can make the app look better, so that you look good at that dinner with friends.
 
 
 === Too Small, Didn't Read
@@ -60,15 +60,15 @@ include::{snippets}/styles1.xml[]
 
 Run the app again and see what changed.
 
-android:textSize:: is, you guess it, the font size for the text.
+android:textSize:: is, you guessed it, the font size for the text.
 
-AppTheme:: is the style define globally for our app in the `AndroidManifest`. This means that our `textSize` of `24sp` will be applied everywhere by default. 
+AppTheme:: is the style defined globally for our app in the `AndroidManifest`. This means that our `textSize` of `24sp` will be applied everywhere by default.
 
 === Styling one input
 
-Open the resource file `inputs.xml`
+Open the resource file `inputs.xml`.
 
-In that file, find the `TextInputEditText` with id `@+id/inputTip` and replace it with the following code
+In that file, find the `TextInputEditText` with id `@+id/inputTip` and replace it with the following code:
 
 [source,xml,indent=0]
 ----
@@ -80,25 +80,25 @@ Run the app again and see what changed.
 image::app2.png[Styling one input]
 
 android:text="20":: allows us to initialize the input with a sensible default.
-textAlignment="textEnd":: makes the text aligned to the right. 
-textStyle="bold":: makes the text bold
-inputType="number":: is the most important attribute. It tells android to present the user with a simplified keyboard to enter a keyboard.
+textAlignment="textEnd":: alignes the text to the right.
+textStyle="bold":: makes the text bold.
+inputType="number":: is the most important attribute. It tells Android to present the user with a simplified keyboard to enter text.
 
 === Extract and repeat
 
 image::refactor1.gif[Extract XML styles]
 
-In this video we
+In this video we:
 
-Style the second input:: like in the last paragraph
-Refactor android style:: and create a new style called `input_style` with all the attributes of this button
-Apply the style:: `style="@style/input_layout"` to the two others `TextInputEditText`
-
-
-As you can see, the xml attributes have now be applied to all three inputs. 
+Style the second input:: as in the previous paragraph.
+Refactor android style:: and create a new style called `input_style` with all the attributes of this button.
+Apply the style:: `style="@style/input_layout"` to the two others `TextInputEditText`.
 
 
-If you open `styles.xml`, you should see what Android Studio has added to your file
+As you can see, the xml attributes have now been applied to all three inputs.
+
+
+If you open `styles.xml`, you should see what Android Studio has added to your file.
 
 [source,xml,indent=0]
 ----
@@ -120,9 +120,9 @@ include::{snippets}/inputs2.xml[]
 
 That button looks ugly, doesn't it?
 
-Open the resource file `activity_main.xml`
+Open the resource file `activity_main.xml`.
 
-Find the `Button` with id `@+id/buttonCalculate"` and replace it with the following content
+Find the `Button` with id `@+id/buttonCalculate"` and replace it with the following content:
 
 [source,xml,indent=0]
 ----
@@ -131,13 +131,13 @@ include::{snippets}/activity-button.xml[]
 
 Run the app again and see what changed.
 
-That's right, the background color is now the same as the app bar. 
+That's right, the background color is now the same as the app bar.
 
-The text is now in white so that the contrast between the two stay readable.
+The text is now in white so that the contrast between the two stays readable.
 
 === Give me space!
 
-We can barely breath in this interface!
+We can barely breathe in this interface!
 
 Next we want to add space everywhere.
 
@@ -154,11 +154,11 @@ a|image::app4.png[After]
 
 
 
-Open the resource file `activity_main.xml` 
+Open the resource file `activity_main.xml`.
 
-We use the attributes `layout_margin{Start,End,Top,Bottom}` and `padding{Start,End,Top,Bottom}` to get the spacing right. 
+Use the attributes `layout_margin{Start,End,Top,Bottom}` and `padding{Start,End,Top,Bottom}` to get the spacing right.
 
-Replace the file content with this one:
+Replace the file content with this:
 
 [source,xml,indent=0]
 ----
@@ -172,20 +172,20 @@ image::https://koenig-media.raywenderlich.com/uploads/2018/10/brilliant.jpg[bril
 
 === Oops, it's buggy!
 
-Are we done just yet? Not really.
+Are we done yet? Not really.
 
-Run again the app and update the price, or the tips or the number of people and press `Compute`.
+Run the app again. Update the price, or the tips, or the number of people. Press `Compute`.
 
 image::app5.png[Bug]
 
-Well yes, it does not take into account at all what you enter! Were you thinking that we were done just yet? Not so, we have still more work to do. But we wanted to be able to focus on the UX so we used the mantra: `fake it until you can make it`. With the UX now looking good enough, it's time to focus on the logic of what the app is actually doing! 
+Well yes, it does not take into account at all what you entered! Were you thinking that we were done just yet? Not so, we have still more work to do. But we wanted to be able to focus on the UX so we used the mantra: `fake it 'til you make it`. With the UX now looking good enough, it's time to focus on the logic of what the app is actually doing!
 
 
 == Dollars and Tips
 
 === What is a Dollar?
 
-Explore the Kotlin class `Dollar`
+Explore the Kotlin class `Dollar`.
 
 See that we have defined our own class for Dollar.
 
@@ -194,15 +194,15 @@ See that we have defined our own class for Dollar.
 include::{snippets}/Dollar1.kt[]
 ----
 
-inline class:: This cool feature was introduced in Kotlin 1.3. It allows to wrap a simple type (like `Int`) in a class, without to actually pay the price of creating and destroying wrapper objects all the time.
+inline class:: This cool feature was introduced in Kotlin 1.3. It allows to wrap a simple type (like `Int`) in a class, without actually having to pay the price of creating and destroying wrapper objects all the time.
 
-Why we define a Dollar class at all?:: This is the most interesting point here is.
+Why do we define a Dollar class at all?:: This is the most interesting point here.
 
-Handling money is surprisingly tricky. We can't just define `9 dollars` as an `Int`. What about `$1.42` then? 
+Handling money is surprisingly tricky. We can't just define `9 dollars` as an `Int`. What about `$1.42` then?
 
-But if we define them as a `Double`, we get a problem. How much is `$1` divided by 3 people? Yes `$0.33333333333....` Alas, computers don't handle those numbers correctly. I won't go into the details of floating-point arithmetic. Long story short: the right thing to do is to count the number of cents. `$1 divided by 3` is `33+33+34 cents`. 
+But if we define them as a `Double`, we encounter a problem. How much is `$1` divided by 3 people? Yes `$0.33333333333....` Alas, computers don't handle those numbers correctly. I won't go into the details of floating-point arithmetic. Long story short: the right thing to do is to count the number of cents. `$1 divided by 3` is `33+33+34 cents`.
 
-There is a Java Money and Currency API that we could use. Because reinventing the wheel is bad, right? Well, not always. This API is a bit ugly and does 10 times more things that what we need. More importantly, we will learn lot of things in the process. Let's get started!
+There is a Java Money and Currency API that we could use. Because reinventing the wheel is bad, right? Well, not always. This API is a bit ugly and does 10 times more things than what we need. More importantly, we will learn lots of things in the process. Let's get started!
 
 
 
@@ -210,13 +210,13 @@ There is a Java Money and Currency API that we could use. Because reinventing th
 
 image::run-units-tests.gif[Run unit tests]
 
-In this screencast we 
+In this screencast we:
 
 - Open the class `DollarTest`.
-- Right click on the folder `app/src/test/java`, and do `Run the tests in "java"`
-- Notice that one test is failing (`Printing dollars like if we were the FED`)
-- Click on the failing test to see what happened
-- Click on the the first line of the stacktrace that belongs to our project (`DollarTest.kt:10`)
+- Right click on the folder `app/src/test/java`, and then `Run the tests in "java"`.
+- Notice that one test is failing (`Printing dollars like if we were the FED`).
+- Click on the failing test to see what happened.
+- Click on the the first line of the stacktrace that belongs to our project (`DollarTest.kt:10`).
 
 
 Explore the class `Dollar` to see how the formatting is implemented.
@@ -235,20 +235,20 @@ include::{snippets}/Dollar2.kt[]
 
 What is new here is that we use a `formatString`.
 
-`\$`:: We want a plain `$` sign and need to escape it since it has a special meaning in Kotlin
+`\$`:: We want a plain `$` sign and need to escape it since it has a special meaning in Kotlin.
 `%d`:: We will pass an integer parameter (`dollars`).
-`%02d`:: This for the cents and make sure to add the missing zeroes. For example `7` will be printed as `07`. 
+`%02d`:: This for the cents and make sure to add the missing zeroes. For example `7` will be printed as `07`.
 
 Run the unit tests again. They should now pass.
 
 
 === Do we have to earn those dollars?
 
-This class `Dollar` does not look very natural to use, doesn't it?
+This class `Dollar` does not feel very natural to use, does it?
 
 We can do better!
 
-Add the following code at the bottom of the file `Dollar.kt`
+Add the following code at the bottom of the file `Dollar.kt`:
 
 [source,kotlin,indent=0]
 ----
@@ -257,9 +257,9 @@ include::{snippets}/Dollar3.kt[]
 
 val Int.dollar:: This defines an extension property.
 
-If you are familiar with extension functions, well this is pretty much the same. You use it as `9.dollar` instead of `9.dollar()`. It makes more sense semantically because it is a constant, the result of `9.dollar` is always the same (`$9`).
+If you are familiar with extension functions, well this is pretty much the same. You use it as `9.dollar` instead of `9.dollar()`. It makes more sense semantically because it is a constant; the result of `9.dollar` is always the same (`$9`).
 
-In the test class `DollarTest`, and add a second test:
+In the test class `DollarTest` add a second test:
 
 [source,kotlin,indent=0]
 ----
@@ -268,14 +268,14 @@ include::{snippets}/DollarTest3.kt[]
 
 Press `Alt-Enter` and Android Studio will import the function `.roundToInt()`.
 
-Run the unit tests and see if they work!
+Run the unit tests and see if they pass!
 
 
 
 
-=== Dollars arithmetic
+=== Dollar arithmetic
 
-Add those two tests in the class `DollarTest`
+Add those two tests in the class `DollarTest`:
 
 [source,kotlin,indent=0]
 ----
@@ -285,16 +285,16 @@ include::{snippets}/DollarTest4.kt[]
 
 image::operators.gif[Add operators]
 
-In this screencast, 
+In this screencast:
 
-- Android Studio shows errors in read because `+` and `/` are not defined for the `Dollar` class. 
-- If we press `Alt-Enter` on this error, we are given the option to define a function `Dollar.plus()`
-- Same thing with the second error with `Dollar.div()` 
-- Notice how the error disappear and how if you `Cmd-Click` on `+` and `/`
-- The unit tests are working! What happen is that the Kotlin compiler use a convention to transform `Dollar(2) + Dollar(2)` in `Dollar(2).plus(Dollar(4))`
-- Notice how the IDE let you jump to the fonctions you just created.
+- Android Studio shows errors in red because `+` and `/` are not defined for the `Dollar` class.
+- If we press `Alt-Enter` on this error, we are given the option to define a function `Dollar.plus()`.
+- Same thing with the second error with `Dollar.div()`.
+- Notice how the error disappears and how if you `Cmd-Click` on `+` and `/` **missing part of the sentence?**
+- The unit tests are working! What happens is that the Kotlin compiler use a convention to transform `Dollar(2) + Dollar(4)` into `Dollar(2).plus(Dollar(4))`.
+- Notice how the IDE lets you jump to the functions you just created.
 
-In the end, you need to have this code for the `Dollar` class
+In the end, you should have this code in the `Dollar` class:
 
 [source,kotlin,indent=0]
 ----
@@ -306,8 +306,8 @@ include::{snippets}/Dollar4.kt[]
 === A few tips
 
 
-When the user use the app, she will want to enter three information:
-a `price`, a `tip` and a number of `people`.
+When the user uses the app, she will want to enter three pieces of information:
+A `price`, a `tip` and a number of `people`.
 
 Explore the file `Tips.kt` and see how this is modelled.
 
@@ -316,22 +316,22 @@ Explore the file `Tips.kt` and see how this is modelled.
 include::{snippets}/Tips1.kt[]
 ----
 
-=== Getting the maths right
+=== Getting the math right
 
-Next we want to do some computation wit this `Tips`.
+Next we want to do some computation with `Tips`.
 
-That's just basic maths really, so we really don't want to look bad by screwing it up.
+That's just basic math, so we really don't want to look bad by screwing it up.
 
-So let's to write some tests first.
+So let's write some tests first.
 
-Open the test class `TipsTest` and replace its content with the following code
+Open the test class `TipsTest` and replace its content with the following code:
 
 [source,kotlin,indent=0]
 ----
 include::{snippets}/TipsTest1.kt[]
 ----
 
-Android Studio shows errors again. That makes sense, we have not implemented those functions just yet.
+Android Studio shows errors again. That makes sense, we have not implemented those functions yet.
 
 Open the file `Tips.kt` and **add** the following code:
 
@@ -341,11 +341,11 @@ Open the file `Tips.kt` and **add** the following code:
 include::{snippets}/Tips2.kt[]
 ----
 
-Run the units tests for this class and check that they run.
+Run the units tests for this class and check that they pass.
 
-We can now be confident that our  `Dollars` and `Tips` work. Let's now use them in the app.
+We can now be confident that our `Dollars` and `Tips` work. Let's use them in the app.
 
-All we have have to do now is to actually use the user input and display the real result.
+All we have have to do is to actually use the user input and display the real result.
 
 == Back to the user interface
 
@@ -361,7 +361,7 @@ include::{snippets}/MainActivity1.kt[]
 
 layoutPrice, inputPrice, ...:: Those are the identifiers of the widgets we defined in the resource file `layout/activity_main.xml`.
 
-validateInput():: Well, the user can enter a bad input, like `cuviawof` of just enter nothing. Let's add this function to `MainActivity`.
+validateInput():: Well, the user can enter a bad input, like `cuviawof` or just enter nothing. Let's add this function to `MainActivity`.
 
 
 [source,kotlin,indent=0]
@@ -374,27 +374,27 @@ Press `Alt-Enter` to let Android Studio add the missing imports.
 
 Here we check that the input contains a numerical value.
 
-If that's not the case, we 
+If that's not the case, we:
 
 1. display an error in the UX (try it!)
-2. return `null`
+2. return `null`.
 
 
 === Output
 
 The last thing we need to do is to format what will be displayed when we click on the `Compute` button.
 
-Open the class `Tips`
+Open the class `Tips`.
 
-Replace the function `Tips.showComputationResult()` with the following code
+Replace the function `Tips.showComputationResult()` with the following code:
 
 [source,kotlin,indent=0]
 ----
 include::{snippets}/Tips4.kt[]
 ----
 
-${totalPrice()}:: 
-We replace the static values in the strings by a call to the functions that we defined and tested before.
+${totalPrice()}::
+We replace the static values in the strings by calling the functions that we defined and tested before.
 
 
 
@@ -402,9 +402,9 @@ We replace the static values in the strings by a call to the functions that we d
 
 image::runconfiguration.gif[]
 
-Open the `Run configurations` dropdown and run the `app`
+Open the `Run configurations` dropdown and run the `app`.
 
-Change the values and press `Compute`. 
+Change the values and press `Compute`.
 
 If you can see something like this, congrats, you are done!
 
