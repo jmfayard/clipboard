@@ -1,0 +1,393 @@
+
+
+= Outline
+hello <jean-michel@fayard.de>
+v1.0, 2018-35-14
+:toc:
+:imagesdir: assets
+:homepage: http://asciidoctor.org
+:source-highlighter: prettify
+:src: app/src/main/java/com/raywenderlich/android/sharedtips
+:test: app/src/test/java/com/raywenderlich/android/sharedtips
+:androidTest: app/src/androidTest/java/com/raywenderlich/android/sharedtips
+:snippets: snippets
+
+
+== Outline
+
+Title:: Shared Tips Calculator
+Audience Level:: Beginner
+Style:: Core Concept
+Prerequisites:: Raywenderlich Android and Kotlin for Beginners, Step 1 to 4 https://www.raywenderlich.com/android/learn
+Most important concepts:: Android, Kotlin, Layouts, Android Studio, Testing, Business Logic, Maths
+Sample app name:: Jmfayard-Android-PreTryout-SP
+Sample app description:: Create a basic tip calculator.  It should calculate a 20% tip on a $200 bill split among 4 people.  It should display how much each person will spend counting the tip. Styled after XXX (**TODO**)
+Requisites:: The mini-tutorial word should have less than 1500 words and more than 6 screenshots. Send first an outline. Use emojis. Spend time on “Why?”. “Tell the reader what they need to do/tell the reader where to add the code/show the code to be added/explain the code”. Modern Kotlin code. Architecture components. Style guides. Starter and final project
+
+
+
+== Getting Started [Instruction]
+
+=== Download and explore starter project
+
+=== Up and running [Instruction]
+
+Open Android Studio and give time to do its sync.
+
+Connect your smartphone via USB.
+
+Select the menu entry `Run > Run` and choose the Run configuration `app`
+
+The app should open on your smartphone.
+
+Enter a **Price** of `200`, a **Tip** of `20` for `4` **people** and press `Compute`.
+
+image::app1.png[Initial app]
+
+
+Congrats, the app is done!
+
+
+_But_, it looks a bit ugly, doesn't it?
+
+== How to make you look good
+
+Let see how we can make the app looks better, so that you looks good in that dinner with friends.
+
+
+=== Too Small, Didn't Read
+
+A first problem is that all that text is hard to read. Just make it bigger.
+
+
+Open the resource file `styles.xml` and replace its content with this:
+
+[source,xml,indent=0]
+----
+include::{snippets}/styles1.xml[]
+----
+
+Run the app again and see what changed.
+
+=== Styling one input
+
+Open the resource file `inputs.xml`
+
+In that file, find the `TextInputEditText` with id `@+id/inputTip` and replace it with the following code
+
+[source,xml,indent=0]
+----
+include::{snippets}/inputs1.xml[]
+----
+
+Run the app again and see what changed.
+
+**TODO**: screenshot
+
+**TODO**: explications
+
+
+
+=== Extract and repeat
+
+image::refactor1.gif[Extract XML styles]
+
+In this video we
+
+- Edit the second input as explained in the last paragraph. 
+- **Refactor > Extract style** and create a new style called `input_style` with all the attributes of this button
+- Add the attribute `style="@style/input_layout"` to the two others `TextInputEditText`
+- Run the app again
+
+As you can see, the xml attributes have now be applied to all three inputs. 
+
+
+If you open `styles.xml`, you should see what Android Studio has added to your file
+
+[source,xml,indent=0]
+----
+include::{snippets}/styles2.xml[]
+----
+
+
+The complete resource file `inputs.xml` now looks like this:
+
+
+[source,xml,indent=0]
+----
+include::{snippets}/inputs2.xml[]
+----
+
+
+
+=== Styling the button
+
+That button looks ugly, doesn't it?
+
+Open the resource file `activity_main.xml`
+
+Find the `Button` with id `@+id/buttonCalculate"` and replace it with the following content
+
+[source,xml,indent=0]
+----
+include::{snippets}/activity-button.xml[]
+----
+
+Run the app again and see what changed.
+
+**TODO**: screenshot
+
+**TODO**: explications
+
+
+=== Give me space!
+
+Next we want to add space everywhere.
+
+We can barely breath in this interface!
+
+[cols=2*,options=header]
+|===
+|Before
+|After
+
+a|image::app3.png[After]
+
+a|image::app4.png[After]
+
+|===
+
+
+Open the resource file `activity_main.xml` and replace its content with this:
+
+[source,xml,indent=0]
+----
+include::{snippets}/activity-space.xml[]
+----
+
+Run the app again and see what changed.
+
+**TODO**: explications
+
+
+
+=== Oops, it's buggy! [Theory]
+
+Are we done just yet? Not really.
+
+Run again the app and update the price, or the tips or the number of people and press `Compute`.
+
+image::app5.png[Bug]
+
+Well yes, it does not take into account at all what you enter! Were you thinking that we were done just yet? Not so, we have still more work to do. But we wanted to be able to focus on the UX so we used the mantra: `fake it until you can make it`. With the UX now looking good enough, it's time to focus on the logic of what the app is actually doing! 
+
+
+== Dollars and Tips
+
+=== What is a Dollar?
+
+Explore the Kotlin class `Dollar`
+
+See that we have defined our own class for Dollar.
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Dollar1.kt[]
+----
+
+**TODO**: explications
+
+
+
+=== Printing dollars
+
+image::run-units-tests.gif[Run unit tests]
+
+In this screencast we 
+
+- Open the class `Dollar test`.
+- Right click on the folder `app/src/test/java`, and do `Run the tests in "java"`
+- Notice that one test is failing (`Printing dollars like if we were the FED`)
+- Click on the failing test to see what happened
+- Click on the the first line of the stacktrace that belongs to our project (`DollarTest.kt:10`)
+
+
+Explore the class `Dollar` to see how the formatting is implemented.
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/DollarTest1.kt[]
+----
+
+In that file, replace the function `Dollar.format()` with this code:
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Dollar2.kt[]
+----
+
+**TODO**: explications
+
+
+=== Do we have to earn those dollars?
+
+This class `Dollar` looks not very natural to use, doesn't it?
+
+We can do better!
+
+Add the following code at the bottom of the file `Dollar.kt`
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Dollar3.kt[]
+----
+
+In the test class `DollarTest`, and add a second test:
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/DollarTest3.kt[]
+----
+
+Press `Alt-Enter` and Android Studio will import the function `.roundToInt()`.
+
+Run the unit tests and see if they work!
+
+**TODO**: explications
+
+
+=== Dollars arithmetic
+
+Add those two tests in the class `DollarTest`
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/DollarTest4.kt[]
+----
+
+
+image::operators.gif[Add operators]
+
+In this screencast, 
+
+- Android Studio shows errors in read because `+` and `/` are not defined for the `Dollar` class. 
+- If we press `Alt-Enter` on this error, we are given the option to define a function `Dollar.plus()`
+- Same thing with the second error with `Dollar.div()` 
+- Notice how the error disappear and how if you `Cmd-Click` on `+` and `/`
+- The unit tests are working! What happen is that the Kotlin compiler use a convention to transform `Dollar(2) + Dollar(2)` in `Dollar(2).plus(Dollar(4))`
+- Notice how the IDE let you jump to the fonctions you just created.
+
+In the end, you need to have this code for the `Dollar` class
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Dollar4.kt[]
+----
+
+
+
+
+== A few tips
+
+=== Modelling our business logic
+
+When the user use the app, she will want to enter three information:
+a `price`, a `tip` and a number of `people`.
+
+Explore the file `Tips.kt` and see how this is modelled.
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Tips1.kt[]
+----
+
+=== Getting the maths right
+
+Next we want to do some computation wit this `Tips`.
+
+That's just basic maths really, so we really don't want to look bad by screwing it up.
+
+So let's to write some tests first.
+
+Open the test class `TipsTest` and replace its content with the following code
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/TipsTest1.kt[]
+----
+
+Android Studio shows errors again. That makes sense, we have not implemented those functions just yet.
+
+Open the file `Tips.kt` and **add** the following code:
+
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Tips2.kt[]
+----
+
+Run the units tests for this class and check that they run.
+
+**TODO**: explications
+
+We can now be confident that our  `Dollars` and `Tips` work. Let's now use them in the app.
+
+All we have have to do now is to actually use the user input and display the real result.
+
+=== User Input
+
+Open the class `MainActivity`, and replace the function `userInput()` with the following code:
+
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/MainActivity1.kt[]
+----
+
+**TODO**: explications
+
+Android Studio complains that the function `validateInput()` is not defined.
+
+Let's fix that by adding this function inside `MainActivity`
+
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/MainActivity2.kt[]
+----
+
+Press `Alt-Enter` to let Android Studio add the missing imports.
+
+The last thing we need to do is to format what will be displayed when we click on the `Compute` button.
+
+
+=== Calculator Output
+
+Open the class `Tips`
+
+Replace the function `Tips.showComputationResult()` with the following code
+
+[source,kotlin,indent=0]
+----
+include::{snippets}/Tips4.kt[]
+----
+
+image::runconfiguration.gif[]
+
+Open the `Run configurations` dropdown and run the `app`
+
+Change the values and press `Compute`. 
+
+If you can see something like this, congrats, you are done!
+
+image::app6.png[]
+
+
+**TODO**: explications
+
+
+
+
+== Where To Go From Here?
+
+
