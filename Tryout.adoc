@@ -13,17 +13,6 @@ v1.0, 2018-35-14
 :snippets: snippets
 
 
-== Outline
-
-Title:: Shared Tips Calculator
-Audience Level:: Beginner
-Style:: Core Concept
-Prerequisites:: Raywenderlich Android and Kotlin for Beginners, Step 1 to 4 https://www.raywenderlich.com/android/learn
-Most important concepts:: Android, Kotlin, Layouts, Android Studio, Testing, Business Logic, Maths
-Sample app name:: Jmfayard-Android-PreTryout-SP
-Sample app description:: Create a basic tip calculator.  It should calculate a 20% tip on a $200 bill split among 4 people.  It should display how much each person will spend counting the tip. Styled after XXX (**TODO**)
-Requisites:: The mini-tutorial word should have less than 1500 words and more than 6 screenshots. Send first an outline. Use emojis. Spend time on “Why?”. “Tell the reader what they need to do/tell the reader where to add the code/show the code to be added/explain the code”. Modern Kotlin code. Architecture components. Style guides. Starter and final project
-
 
 
 == Getting Started [Instruction]
