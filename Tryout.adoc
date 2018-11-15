@@ -1,9 +1,8 @@
 
-
-= Outline
+= Jmfayard-Android-PreTryout-MT
 hello <jean-michel@fayard.de>
 v1.0, 2018-35-14
-:toc:
+
 :imagesdir: assets
 :homepage: http://asciidoctor.org
 :source-highlighter: prettify
@@ -11,9 +10,15 @@ v1.0, 2018-35-14
 :test: app/src/test/java/com/raywenderlich/android/sharedtips
 :snippets: snippets
 :linkattrs:
+:toc:
 
+In this tutorial we will build upon the four lessons of our https://www.raywenderlich.com/android/learn[Android and Kotlin for Beginners] and teach you a mindset that will you bring you on the path to becoming a great developer: improving user interfaces, modelling your domain logic, unit tests and user validation.
+
+You have been hard at work learning Kotlin and Android. Your third app will bring you the social validation you deserve: you will be building a shared tips calculator that you can use when partying with your friends!
 
 == Getting Started
+
+
 
 === Download and explore the starter project
 
@@ -23,7 +28,9 @@ Unzip the file `Jmfayard-Android-PreTryout-SP.zip`.
 
 === Up and running
 
-Open the project with Android Studio, give it some to finish the sync.
+If you have not Android Studio installed already, https://developer.android.com/studio[download it from here^]
+
+Open the project with Android Studio.
 
 Connect your smartphone via USB.
 
@@ -39,12 +46,11 @@ image::app1.png[Initial app]
 Congrats, the app is done!
 
 
-_But_, it looks a bit ugly, doesn't it?
+But, it looks a bit _ugly_, doesn't it?
 
 == How to make you look good
 
 Let see how we can make the app look better, so that you look good at that dinner with friends.
-
 
 === Too Small, Didn't Read
 
@@ -62,7 +68,7 @@ Run the app again and see what changed.
 
 android:textSize:: is, you guessed it, the font size for the text.
 
-AppTheme:: is the style defined globally for our app in the `AndroidManifest`. This means that our `textSize` of `24sp` will be applied everywhere by default.
+AppTheme:: is the style of our app. This means that our `textSize` of `24sp` will be applied everywhere by default. 
 
 === Styling one input
 
@@ -95,8 +101,7 @@ Refactor android style:: and create a new style called `input_style` with all th
 Apply the style:: `style="@style/input_layout"` to the two others `TextInputEditText`.
 
 
-As you can see, the xml attributes have now been applied to all three inputs.
-
+As you can see, the xml attributes have now been applied to all three inputs. 
 
 If you open `styles.xml`, you should see what Android Studio has added to your file.
 
@@ -154,9 +159,9 @@ a|image::app4.png[After]
 
 
 
-Open the resource file `activity_main.xml`.
+Open the resource file `activity_main.xml` 
 
-Use the attributes `layout_margin{Start,End,Top,Bottom}` and `padding{Start,End,Top,Bottom}` to get the spacing right.
+The attributes `layout_margin{Start,End,Top,Bottom}` and `padding{Start,End,Top,Bottom}` allows to add the necessary steps. 
 
 Replace the file content with this:
 
@@ -174,11 +179,11 @@ image::https://koenig-media.raywenderlich.com/uploads/2018/10/brilliant.jpg[bril
 
 Are we done yet? Not really.
 
-Run the app again. Update the price, or the tips, or the number of people. Press `Compute`.
+Run again the app. Update the price, or the tips or the number of people. Press `Compute`.
 
 image::app5.png[Bug]
 
-Well yes, it does not take into account at all what you entered! Were you thinking that we were done just yet? Not so, we have still more work to do. But we wanted to be able to focus on the UX so we used the mantra: `fake it 'til you make it`. With the UX now looking good enough, it's time to focus on the logic of what the app is actually doing!
+Well yes, it does not take into account at all what you entered! Were you thinking that we were done just yet? Not so, we have still more work to do. But we wanted to be able to focus on the UX so we used the mantra: `fake it until you can make it`. With the UX now looking good enough, it's time to focus on the logic of what the app is actually doing! 
 
 
 == Dollars and Tips
@@ -194,15 +199,15 @@ See that we have defined our own class for Dollar.
 include::{snippets}/Dollar1.kt[]
 ----
 
-inline class:: This cool feature was introduced in Kotlin 1.3. It allows to wrap a simple type (like `Int`) in a class, without actually having to pay the price of creating and destroying wrapper objects all the time.
+inline class:: This cool feature was introduced in Kotlin 1.3. It allows you to have a conveninent wrapper class without paying the price that would come with it.
 
-Why do we define a Dollar class at all?:: This is the most interesting point here.
+Why do we define a Dollar class at all?:: This is the most interesting point here is.
 
-Handling money is surprisingly tricky. We can't just define `9 dollars` as an `Int`. What about `$1.42` then?
+Handling money is surprisingly tricky. We can't just define `9 dollars` as an `Int`. What about `$1.42` then? 
 
-But if we define them as a `Double`, we encounter a problem. How much is `$1` divided by 3 people? Yes `$0.33333333333....` Alas, computers don't handle those numbers correctly. I won't go into the details of floating-point arithmetic. Long story short: the right thing to do is to count the number of cents. `$1 divided by 3` is `33+33+34 cents`.
+But if we define them as a `Double`, we encounter a problem. How much is `$1` divided by 3 people? Yes `$0.33333333333....` Alas, computers don't handle those numbers correctly. I won't go into the details of floating-point arithmetic. Long story short: the right thing to do is to count the number of cents. `$1 divided by 3` is `33+33+34 cents`. 
 
-There is a Java Money and Currency API that we could use. Because reinventing the wheel is bad, right? Well, not always. This API is a bit ugly and does 10 times more things than what we need. More importantly, we will learn lots of things in the process. Let's get started!
+There is a Java Money and Currency API that we could use. Because reinventing the wheel is bad, right? Well, not always. This API is a bit ugly and does 10 times more things than what we need. More importantly, we will learn lot of things in the process. Let's get started!
 
 
 
@@ -210,7 +215,7 @@ There is a Java Money and Currency API that we could use. Because reinventing th
 
 image::run-units-tests.gif[Run unit tests]
 
-In this screencast we:
+In this screencast we: 
 
 - Open the class `DollarTest`.
 - Right click on the folder `app/src/test/java`, and then `Run the tests in "java"`.
@@ -237,7 +242,7 @@ What is new here is that we use a `formatString`.
 
 `\$`:: We want a plain `$` sign and need to escape it since it has a special meaning in Kotlin.
 `%d`:: We will pass an integer parameter (`dollars`).
-`%02d`:: This for the cents and make sure to add the missing zeroes. For example `7` will be printed as `07`.
+`%02d`:: This for the cents and make sure to add the missing zeroes. For example `7` will be printed as `07`. 
 
 Run the unit tests again. They should now pass.
 
@@ -275,7 +280,7 @@ Run the unit tests and see if they pass!
 
 === Dollar arithmetic
 
-Add those two tests in the class `DollarTest`:
+Add those two tests in the class `DollarTest`
 
 [source,kotlin,indent=0]
 ----
@@ -305,7 +310,6 @@ include::{snippets}/Dollar4.kt[]
 
 === A few tips
 
-
 When the user uses the app, she will want to enter three pieces of information:
 A `price`, a `tip` and a number of `people`.
 
@@ -318,7 +322,7 @@ include::{snippets}/Tips1.kt[]
 
 === Getting the math right
 
-Next we want to do some computation with `Tips`.
+Next we want to do some computation wit `Tips`.
 
 That's just basic math, so we really don't want to look bad by screwing it up.
 
@@ -343,7 +347,7 @@ include::{snippets}/Tips2.kt[]
 
 Run the units tests for this class and check that they pass.
 
-We can now be confident that our `Dollars` and `Tips` work. Let's use them in the app.
+We can now be confident that our  `Dollars` and `Tips` work. Let's use them in the app.
 
 All we have have to do is to actually use the user input and display the real result.
 
@@ -361,7 +365,7 @@ include::{snippets}/MainActivity1.kt[]
 
 layoutPrice, inputPrice, ...:: Those are the identifiers of the widgets we defined in the resource file `layout/activity_main.xml`.
 
-validateInput():: Well, the user can enter a bad input, like `cuviawof` or just enter nothing. Let's add this function to `MainActivity`.
+validateInput():: Well, the user can enter a bad input, like `cuviawof`. Or just enter nothing. Let's add this function to `MainActivity`;
 
 
 [source,kotlin,indent=0]
@@ -374,9 +378,9 @@ Press `Alt-Enter` to let Android Studio add the missing imports.
 
 Here we check that the input contains a numerical value.
 
-If that's not the case, we:
+If that's not the case, we 
 
-1. display an error in the UX (try it!)
+1. display an error in the UX (try it!).
 2. return `null`.
 
 
@@ -384,17 +388,17 @@ If that's not the case, we:
 
 The last thing we need to do is to format what will be displayed when we click on the `Compute` button.
 
-Open the class `Tips`.
+Open the class `Tips`
 
-Replace the function `Tips.showComputationResult()` with the following code:
+Replace the function `Tips.showComputationResult()` with the following code
 
 [source,kotlin,indent=0]
 ----
 include::{snippets}/Tips4.kt[]
 ----
 
-${totalPrice()}::
-We replace the static values in the strings by calling the functions that we defined and tested before.
+${totalPrice()}:: 
+We replace the static values in the strings by a call to the functions that we defined and tested before.
 
 
 
@@ -402,9 +406,9 @@ We replace the static values in the strings by calling the functions that we def
 
 image::runconfiguration.gif[]
 
-Open the `Run configurations` dropdown and run the `app`.
+Open the `Run configurations` dropdown and run the `app`
 
-Change the values and press `Compute`.
+Change the values and press `Compute`. 
 
 If you can see something like this, congrats, you are done!
 
@@ -414,7 +418,10 @@ image::app6.png[]
 == Where To Go From Here?
 
 
-Download the materials:: If you haven't done it already, https://drive.google.com/drive/folders/1aE9V8GNKZiDUV4uA-x3Eoi2-eBGhLljc?usp=sharing[Download the material from Google Drive^]. Unzip the file `Jmfayard-Android-PreTryout-SP.zip` and open it in Android Studio. Practice will consolidate what you just learned.
+Download the materials:: If you haven't done it already, https://drive.google.com/drive/folders/1aE9V8GNKZiDUV4uA-x3Eoi2-eBGhLljc?usp=sharing[Download the material from Google Drive^]. Unzip the file `Jmfayard-Android-PreTryout-SP.zip` and open it in Android Studio. Practice will solidify what you just learned.
 
 https://www.raywenderlich.com/android/learn[Android and Kotlin for Beginners]:: In this comprehensive 9 course learning path, you will learn Android and Kotlin development from a team of experts. Through step-by-step tutorials and hands-on challenges, you'll learn how to create professional Android and Kotlin apps using the latest techniques.
 
+
+
+We hope you enjoyed this tutorial, and if you have any questions or comments, please join the forum discussion below!
