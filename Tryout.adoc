@@ -414,7 +414,7 @@ image::app6.png[]
 == Where To Go From Here?
 
 
-Download the materials:: If you haven't done it already, https://drive.google.com/drive/folders/1aE9V8GNKZiDUV4uA-x3Eoi2-eBGhLljc?usp=sharing[Download the material from Google Drive^]. Unzip the file `Jmfayard-Android-PreTryout-SP.zip` and open it in Android Studio. Practice will solidify what you just learned.
+Download the materials:: If you haven't done it already, https://drive.google.com/drive/folders/1aE9V8GNKZiDUV4uA-x3Eoi2-eBGhLljc?usp=sharing[Download the material from Google Drive^]. Unzip the file `Jmfayard-Android-PreTryout-SP.zip` and open it in Android Studio. Practice will consolidate what you just learned.
 
 https://www.raywenderlich.com/android/learn[Android and Kotlin for Beginners]:: In this comprehensive 9 course learning path, you will learn Android and Kotlin development from a team of experts. Through step-by-step tutorials and hands-on challenges, you'll learn how to create professional Android and Kotlin apps using the latest techniques.
 
