@@ -1,0 +1,137 @@
+= Retrofit
+JMF <jmfayard@gmail.com>
+v1.0, 2018-35-14
+:toc:
+
+:imagesdir: assets
+:homepage: https://github.com/jmfayard/clipboard
+:source-highlighter: prettify
+:linkattrs:
+
+
+## Gradle
+
+[source,kotlin]
+----
+implementation("com.squareup.moshi:moshi:1.8.0")
+implementation("com.squareup.okhttp3:logging-interceptor:3.12.0")
+implementation("com.squareup.okhttp3:okhttp:3.12.0")
+implementation("com.squareup.retrofit2:converter-moshi:2.5.0")
+implementation("com.squareup.retrofit2:retrofit:2.5.0")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1")
+implementation("ru.gildor.coroutines:kotlin-coroutines-retrofit:0.13.0-eap13")
+----
+
+
+## Retrofit + coroutines
+
+
+[source,kotlin]
+----
+import retrofit2.Call
+import retrofit2.Retrofit
+import ru.gildor.coroutines.retrofit.await
+
+interface Api {
+    @POST("post")
+    fun postStuff(@Body data: RequestData) : Call<ResponseData>
+}
+
+suspend fun httpbinPost(data: RequestData, api: Api = Network.api)
+        : ResponseData = api.postStuff(data).await()
+----
+
+
+
+## Wiring things up
+
+[source,kotlin]
+----
+object Network {
+
+    val baseUrl = "https://httpbin.org"
+
+    val moshi = Moshi.Builder().build()
+
+    /** Lazy Moshi Adapter. Usage: see [MercariItem] **/
+    inline fun <reified T> moshiAdapter(): Lazy<JsonAdapter<T>> =
+            lazy { moshi.adapter(T::class.java) }
+
+    val logginInterceptor =
+            HttpLoggingInterceptor(Logger.DEFAULT)
+                    .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+    val okClient = OkHttpClient.Builder()
+            .addNetworkInterceptor(logginInterceptor)
+            .build()
+
+    val retrofit = Retrofit.Builder()
+            .client(okClient)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .baseUrl(baseUrl)
+            .build()
+
+    val api: Api by lazy {
+        retrofit.create(Api::class.java)
+    }
+----
+
+
+
+## Unit tests
+
+
+[source,kotlin]
+----
+import io.kotlintest.matchers.shouldBe
+import io.kotlintest.specs.FunSpec
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.runBlocking
+
+fun FunSpec.coroutineTest(name: String, block: suspend CoroutineScope.() -> Unit) = test(name) {
+    runBlocking { block() }
+}
+
+class NetworkTest : FunSpec ({
+
+    coroutineTest("httpbin") {
+        val response = httpbinPost(RequestData(ok = true))
+        response.args shouldBe RequestData(ok = true)
+    }
+
+})
+----
+
+
+## Model
+
+
+[source,kotlin]
+----
+data class RequestData(val ok: Boolean = true)
+
+data class ResponseData(
+        val args: RequestData,
+        val headers: Map<String, String>,
+        val origin: String,
+        val url: String
+) {
+    companion object {
+    val adapter by Network.moshiAdapter<ResponseData>()
+    val example by lazy { adapter.fromJson(exampleJson)!! }
+
+        val exampleJson = """
+{
+  "args": {},
+  "headers": {
+    "Host": "httpbin.org",
+  },
+  "origin": "91.60.93.45",
+  "url": "https://httpbin.org/post"
+}
+    """.trimIndent()
+
+    }
+}
+----
