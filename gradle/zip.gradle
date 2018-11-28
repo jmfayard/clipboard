@@ -1,0 +1,13 @@
+// https://docs.gradle.org/current/userguide/working_with_files.html#sec:creating_archives_example
+tasks.create("zip", Zip) {
+  group = "Custom"
+  destinationDir new File("..")
+  archiveName project.name + ".zip"
+  from fileTree(".") {
+    into project.name
+    exclude("**/build", "**/.gradle", ".idea/**")
+  }
+  doLast {
+    println("unzip -l " + archivePath)
+  }
+}
